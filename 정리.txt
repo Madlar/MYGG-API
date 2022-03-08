@@ -1,0 +1,30 @@
+DB
+- 소환사 정보
+- 소환사 랭크
+- 플레이 기록
+- 플레이 세부사항
+
+서버
+- 라이엇api 호출 빈도를 줄이기 위해 호출 됐었던 정보들을 자체 서버에 저장후 클라이언트에 반환
+- 클라이언트에서 업데이트 요청을 하면 라이엇api로 갱신
+
+api
+- SUMMONER-V4 /lol/summoner/v4/summoners/by-name/{summonerName}
+(name)
+(accountId, profileIconId, revisionDate, name, id, puuid, summonerLevel)
+- LEAGUE-V4 /lol/league/v4/entries/by-summoner/{encryptedSummonerId}
+(id)
+(leagueId, queueType, tier, rank, summonerId, summonerName, leaguePoints, wins, losses, veteran, inactive, freshBlood, hotStreak)
+- MATCH-V5 /lol/match/v5/matches/by-puuid/{puuid}/ids
+(puuid) (opt: startTime, endTime, queue, type, start = 0, count = 20(0 to 100))
+(matchId)
+- MATCH-V5 /lol/match/v5/matches/{matchId}
+(matchId)
+(https://developer.riotgames.com/apis#match-v5/GET_getMatch 참조)
+- SPECTATOR-V4 /lol/spectator/v4/active-games/by-summoner/{encryptedSummonerId}
+(id)
+(gameId, gameType, gameStartTime, mapId, gameLength, platformId, gameMode, bannedChampions, gameQueueConfigId, observers, participants)
+
+클라이언트
+- 소환사 검색
+- 소환사의 티어, 점수, 전적 보여줌
